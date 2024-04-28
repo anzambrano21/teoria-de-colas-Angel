@@ -1,5 +1,5 @@
-import flet,random,simpy
-from flet import Page, Column,Row, ElevatedButton ,Text
+import flet,simpy
+from flet import Page, Column
 from nodos import Nodo
 
 
@@ -57,11 +57,12 @@ class pruevas:
 
          
          
-         
+#definicion de funcion prinicipal        
 def main(page:Page):
+    #definimos la estructura de la ventana
     page.window_height=500
     page.window_width=500
-    
+    #caselar el cambio de tamaño
     page.window_resizable=False
     env = simpy.Environment()
     # Parámetros
