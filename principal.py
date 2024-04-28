@@ -17,8 +17,7 @@ class pruevas:
          
          self.page.add(self.row)
     def generar(self,event):
-        if (len(self.num_Nodo)>0):
-            self
+
         for i in range(int(self.n_TexNodo.value)):
             self.num_Nodo.append(flet.TextField(label="Nodo N "+str(i)+""))
         self.col=Column(self.num_Nodo)
