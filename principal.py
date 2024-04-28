@@ -4,7 +4,7 @@ from flet import Page, Column,Row, ElevatedButton ,Text
 class pruevas:
     def __init__(self,page:Page):
         self.page=page
-        
+        self.col=Column(width=500,height=200,scroll=flet.ScrollMode.ALWAYS)
         self.contenido()
         
 
@@ -26,8 +26,8 @@ class pruevas:
         for i in range(int(self.n_TexNodo.value)):
             
             self.num_Nodo.append(flet.TextField(label="Nodo N "+str(i)+""))
-        col=Column(self.num_Nodo)
-        self.page.add(col)
+        self.col.controls=self.num_Nodo
+        self.page.add(self.col)
         self.page.update()
          
          
