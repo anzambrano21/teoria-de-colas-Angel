@@ -38,18 +38,23 @@ class pruevas:
     def operarC(self,event):
 
         nodos=[]
+        Probalilida=[]
         
         for i in range(len(self.num_Nodo)):
-             nodos.append(Nodo(self.env,int(self.num_Nodo[i].value),1/20,nombre=f"{i}"))
+             nodos.append(Nodo(self.env,int(self.num_Nodo[i].value),(15,30),nombre=f"{i}"))
+        
         for nodo in nodos:
             self.env.process(nodo.llegada_cliente())
+        
 
         self.env.run(until=100)
-        longitud_promedio_cola = sum(nodo.cola.count for nodo in nodos) /len(self.num_Nodo)
-        tiempo_espera_promedio = longitud_promedio_cola / 5  # 5 clientes en total
 
-        print(f"Longitud promedio de la cola: {longitud_promedio_cola:.2f}")
-        print(f"Tiempo de espera promedio: {tiempo_espera_promedio:.2f} minutos")
+        for i in range(len(nodos)):
+             Probalilida.append(nodos[i].Tlleg/nodos[i].Toper[1])
+             
+        for i in range(len(Probalilida)):
+            print("probabilidad de espera es {0}".format(Probalilida[i]))
+
          
          
          
