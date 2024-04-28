@@ -1,6 +1,6 @@
 import flet,random,simpy
 from flet import Page, Column,Row, ElevatedButton ,Text
-from nodos import nodo
+from nodos import Nodo
 
 
 class pruevas:
@@ -24,28 +24,23 @@ class pruevas:
     def generar(self,event):
         if (len(self.page.controls)>1):
             self.page.controls.pop(1)
+            self.page.controls.pop(2)
             self.num_Nodo.clear()
 
         for i in range(int(self.n_TexNodo.value)):
             
             self.num_Nodo.append(flet.TextField(label=f"tiempo de llegada del nodo {i+1}"))
-        self.num_Nodo.append(flet.ElevatedButton(text="operar",on_click=self.operarC))
         self.col.controls=self.num_Nodo
         self.page.add(self.col)
+        self.page.add(flet.ElevatedButton(text="operar",on_click=self.operarC))
         self.page.update()
-    def llegadaC(self,cliente,nodo):
-        print(f"{cliente} llega al nodo {nodo.nombre} en t = {self.env.now}")
-        yield self.env.timeout(nodo.tiempo_llegada)
-        print(f"{cliente} se mueve al nodo B en t = {self.env.now}")
-        yield self.env.timeout(nodo.tiempo_servicio)
-        print(f"{cliente} es atendido en B en t = {self.env.now}")
+
     def operarC(self,event):
-        TIEMPO_CORTE_MIN = 15
-        TIEMPO_CORTE_MAX = 30
+
         nodos=[]
         
         for i in range(len(self.num_Nodo)):
-             nodos.append(nodos(self.env,self.num_Nodo[i].value,random.uniform(TIEMPO_CORTE_MIN,TIEMPO_CORTE_MAX),nombre=f"{i}"))
+             nodos.append(Nodo(self.env,int(self.num_Nodo[i].value),1/20,nombre=f"{i}"))
         for nodo in nodos:
             self.env.process(nodo.llegada_cliente())
 
