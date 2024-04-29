@@ -1,4 +1,4 @@
-import flet,simpy
+import flet
 from flet import Page, Column
 from nodos import Nodo
 class pruevas:
