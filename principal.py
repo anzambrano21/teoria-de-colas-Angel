@@ -19,12 +19,14 @@ class pruevas:
             flet.ElevatedButton(text="generar",on_click=self.generar)
 
          ])
+        
          
          self.page.add(self.row)
     def generar(self,event):
         if (len(self.page.controls)>1):
             self.page.controls.pop(1)
             self.page.controls.pop(2)
+            #self.page.controls.pop(3)
             self.num_Nodo.clear()
 
         for i in range(int(self.n_TexNodo.value)):
@@ -51,10 +53,13 @@ class pruevas:
 
         for i in range(len(nodos)):
              Probalilida.append(nodos[i].Tlleg/nodos[i].Toper[1])
-             
+        res=Column(width=500,height=200,scroll=flet.ScrollMode.ALWAYS)
+        resp=[]     
         for i in range(len(Probalilida)):
-            print("probabilidad de espera es {0}".format(Probalilida[i]))
-
+            resp.append(flet.Text(value="probabilidad de espera es {0}".format(Probalilida[i])))
+        res.controls=resp
+        self.page.add(res)
+        self.page.update()
          
          
 #definicion de funcion prinicipal        
