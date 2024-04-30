@@ -1,5 +1,5 @@
 import flet,simpy
-from flet import Page, Column
+from flet import Page
 from paginas import pruevas
 
 

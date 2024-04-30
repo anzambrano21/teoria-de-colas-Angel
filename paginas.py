@@ -11,7 +11,7 @@ class pruevas:
 
         self.num_Nodo=[]
     def contenido(self):
-         self.n_TexNodo=flet.TextField(label="Numero de nodos")
+         self.n_TexNodo=flet.TextField(label="Numero de nodos",on_change=self.soloNumero)
          self.row=Column(controls=[
             self.n_TexNodo,
             flet.ElevatedButton(text="generar",on_click=self.generar)
@@ -20,14 +20,25 @@ class pruevas:
         
          
          self.page.add(self.row)
+    def soloNumero(self,e):
+        
+        
+        try:
+            n=int(self.n_TexNodo.value)
+        except:
+            print(1)
+            self.n_TexNodo.value=""
+        
+        self.page.update()
+        
     def generar(self,event):
         if (len(self.page.controls)>1):
             self.page.controls.pop(1)
             self.page.controls.pop(2)
-            #self.page.controls.pop(3)
+            
             self.num_Nodo.clear()
 
-        for i in range(int(self.n_TexNodo.value)): self.num_Nodo.append(flet.TextField(label=f"tiempo de llegada del nodo {i+1}"))
+        for i in range(int(self.n_TexNodo.value)): self.num_Nodo.append(flet.TextField(label=f"tiempo de llegada del nodo {i+1}",on_change=self.soloNumero))
         self.col.controls=self.num_Nodo
         self.page.add(self.col)
         self.page.add(flet.ElevatedButton(text="operar",on_click=self.operarC))
