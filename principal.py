@@ -1,9 +1,6 @@
 import flet,simpy
 from flet import Page
 from paginas import pruevas
-
-
-       
 #definicion de funcion prinicipal        
 def main(page:Page):
     #definimos la estructura de la ventana
