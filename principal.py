@@ -4,8 +4,8 @@ from paginas import pruevas
 #definicion de funcion prinicipal        
 def main(page:Page):
     #definimos la estructura de la ventana
-    page.window_height=500
-    page.window_width=500
+    page.window_height=1000
+    page.window_width=1000
     #caselar el cambio de tamaño
     page.window_resizable=False
     env = simpy.Environment()

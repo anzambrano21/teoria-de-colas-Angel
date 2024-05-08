@@ -18,4 +18,4 @@ class Nodo:
             with self.cola.request() as req:
                 yield req
                 yield self.even.timeout(random.uniform(*self.Toper))  # Tiempo de servicio
-                print(f"Cliente atendido en {self.nombre}.")
+                print(f"Atendido en {self.nombre}.")

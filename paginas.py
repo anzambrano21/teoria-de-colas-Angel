@@ -54,7 +54,7 @@ class pruevas:
         nodos=[]
         Probalilida=[]
         ban=True
-        CerosNodos = any(nodo.value.isdigit() and int(nodo.value) == 0 for nodo in self.num_Nodo)
+        CerosNodos = any(int(nodo.value) <= 0  for nodo in self.num_Nodo)
         for i in range(len(self.num_Nodo)):
             try:
                 n=int(self.num_Nodo[i].value)
@@ -67,10 +67,11 @@ class pruevas:
 
             self.env.run(until=100)
 
-            for i in range(len(nodos)): Probalilida.append(nodos[i].Tlleg/nodos[i].Toper[1])
-            res=Column(width=500,height=200,scroll=flet.ScrollMode.ALWAYS)
+            for i in range(len(nodos)): Probalilida.append(1-(nodos[i].Tlleg/nodos[i].Toper[1]))
+            res=Column(width=500,height=75,scroll=flet.ScrollMode.ALWAYS)
             resp=[]     
-            for i in range(len(Probalilida)):resp.append(flet.Text(value="probabilidad de espera es {0}".format(Probalilida[i])))
+            print(Probalilida)
+            for i in range(len(Probalilida)):resp.append(flet.Text(value="probabilidad de atender es {0}".format(Probalilida[i])))
             res.controls=resp
             self.page.add(res)
             self.page.update()
