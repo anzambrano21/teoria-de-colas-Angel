@@ -1,6 +1,7 @@
 import flet
-from flet import Page, Column
+from flet import Page, Column,Row
 from nodos import Nodo
+import random
 class pruevas:
     def __init__(self,env,page:Page):
         self.env=env
@@ -14,7 +15,10 @@ class pruevas:
          self.n_TexNodo=flet.TextField(label="Numero de nodos",on_change=self.soloNumero)
          self.row=Column(controls=[
             self.n_TexNodo,
-            flet.ElevatedButton(text="generar",on_click=self.generar)
+            Row(controls=[flet.ElevatedButton(text="generar",on_click=self.generar),
+                         flet.ElevatedButton(text="random",on_click=self.random)])
+            
+            
 
          ])
         
@@ -32,7 +36,7 @@ class pruevas:
         self.page.update()
         
     def generar(self,event):
-        if (len(self.page.controls)>1):
+        if (len(self.page.controls)>2):
             self.page.controls.pop(1)
             self.page.controls.pop(2)
             self.num_Nodo.clear()
@@ -47,9 +51,12 @@ class pruevas:
             self.page.add(self.col)
             self.page.add(flet.ElevatedButton(text="operar",on_click=self.operarC))
             self.page.update()
-        
+    def random(self,event):
+        for i in range(len(self.num_Nodo)): self.num_Nodo[i].value= random.randint(1,40)
+        self.page.update()
 
     def operarC(self,event):
+        
 
         nodos=[]
         Probalilida=[]
