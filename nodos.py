@@ -10,6 +10,7 @@ class Nodo:
         self.Toper=Toper
         #nombre del nodo
         self.nombre=nombre
+        self.total_clientes = 0
         self.cola= simpy.Resource(evn, capacity=1)
     def llegada_cliente(self):
         #proceso de atender el cliente 
@@ -19,3 +20,4 @@ class Nodo:
                 yield req
                 yield self.even.timeout(random.uniform(*self.Toper))  # Tiempo de servicio
                 print(f"Atendido en {self.nombre}.")
+                self.total_clientes += 1

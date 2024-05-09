@@ -24,15 +24,12 @@ class pruevas:
         
          
          self.page.add(self.row)
+
     def soloNumero(self,e):
-        
-        
         try:
             n=int(self.n_TexNodo.value)
         except:
-            
             self.n_TexNodo.value=""
-        
         self.page.update()
         
     def generar(self,event):
@@ -46,7 +43,7 @@ class pruevas:
             
             self.n_TexNodo.value="0"
         if (int(self.n_TexNodo.value)>0):
-            for i in range(int(self.n_TexNodo.value)): self.num_Nodo.append(flet.TextField(label=f"tiempo de llegada del nodo {i+1}",on_change=self.soloNumero))
+            for i in range(int(self.n_TexNodo.value)): self.num_Nodo.append(flet.TextField(label=f"tiempo de llegada del nodo {i+1}"))
             self.col.controls=self.num_Nodo
             self.page.add(self.col)
             self.page.add(flet.ElevatedButton(text="operar",on_click=self.operarC))
@@ -61,15 +58,15 @@ class pruevas:
         nodos=[]
         Probalilida=[]
         ban=True
-        CerosNodos = any(int(nodo.value) <= 0  for nodo in self.num_Nodo)
+        CerosNodos = any(float(nodo.value) <= 0  for nodo in self.num_Nodo)
         for i in range(len(self.num_Nodo)):
             try:
-                n=int(self.num_Nodo[i].value)
+                n=float(self.num_Nodo[i].value)
             except:
                 ban=False
         if(not CerosNodos and ban):
             
-            for i in range(len(self.num_Nodo)): nodos.append(Nodo(self.env,int(self.num_Nodo[i].value),(15,30),nombre=f"{i}"))
+            for i in range(len(self.num_Nodo)): nodos.append(Nodo(self.env,float(self.num_Nodo[i].value),(15,30),nombre=f"{i}"))
             for nodo in nodos: self.env.process(nodo.llegada_cliente())
 
             self.env.run(until=100)
